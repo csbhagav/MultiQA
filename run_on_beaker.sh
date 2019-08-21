@@ -10,7 +10,7 @@ EXPT_FILE=mrqa.yml
 export IMAGE_NAME=${IMAGE_NAME}
 
 docker build -t ${IMAGE_NAME} .
-bp=$(beaker image create --quiet ${IMAGE_NAME})
+export bp=$(beaker image create --quiet ${IMAGE_NAME})
 
 echo ${bp}
 export TRAIN_DATASETS=drop
