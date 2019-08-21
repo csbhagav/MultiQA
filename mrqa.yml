@@ -17,9 +17,9 @@ tasks:
       env:
         ALLENNLP_CACHE_ROOT: /output/cache/
       requirements:
-        gpuCount: 4
+        gpuCount: 1
         gpuType: v100
-        preemptible: false
+        preemptible: true
   - name: evaluating
     spec:
       image: ${bp}
@@ -37,7 +37,7 @@ tasks:
       requirements:
         gpuCount: 1
         gpuType: v100
-        preemptible: false
+        preemptible: true
     dependsOn:
       - parentName: training
         containerPath: /input/
