@@ -13,7 +13,7 @@ docker build -t ${IMAGE_NAME} .
 export bp=$(beaker image create --quiet ${IMAGE_NAME})
 
 echo ${bp}
-export TRAIN_DATASETS=drop
-export TEST_DATASETS=drop
+export TRAIN_DATASETS=NewsQA
+export TEST_DATASETS=NewsQA
 
 expt=$(beaker experiment create --file ${EXPT_FILE} --quiet)
