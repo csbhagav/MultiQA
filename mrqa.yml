@@ -19,7 +19,7 @@ tasks:
       requirements:
         gpuCount: 4
         gpuType: v100
-        preemptible: true
+        preemptible: false
   - name: evaluating
     spec:
       image: ${bp}
@@ -37,7 +37,7 @@ tasks:
       requirements:
         gpuCount: 1
         gpuType: v100
-        preemptible: true
+        preemptible: false
     dependsOn:
       - parentName: training
         containerPath: /input/
