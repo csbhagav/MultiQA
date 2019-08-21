@@ -1,0 +1,43 @@
+description: Train MultiQA
+tasks:
+  - name: training
+    spec:
+      image: ${bp}
+      resultPath: /output
+      args:
+        - python
+        - multiqa.py
+        - train
+        - --datasets
+        - ${TRAIN_DATASETS}
+        - --cuda_device
+        - 0,1,2,3
+        - --serialization_dir
+        - /output/models/
+      env:
+        ALLENNLP_CACHE_ROOT: /output/cache/
+      requirements:
+        gpuCount: 4
+        gpuType: v100
+        preemptible: true
+  - name: evaluating
+    spec:
+      image: ${bp}
+      resultPath: /output
+      args:
+        - python
+        - multiqa.py
+        - evaluate
+        - --model
+        - /input/models/${TRAIN_DATASETS}
+        - --datasets
+        - ${TEST_DATASETS}
+        - --cuda_device
+        - 0
+      requirements:
+        gpuCount: 1
+        gpuType: v100
+        preemptible: true
+    dependsOn:
+      - parentName: training
+        containerPath: /input/
