@@ -29,11 +29,15 @@ tasks:
         - multiqa.py
         - evaluate
         - --model
-        - /input/models/${TRAIN_DATASETS}
+        - model
         - --datasets
         - ${TEST_DATASETS}
         - --cuda_device
         - 0
+        - --models_dir
+        - /input/models/
+        - --output_path
+        - /output/
       requirements:
         gpuCount: 1
         gpuType: v100
