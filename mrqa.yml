@@ -11,7 +11,7 @@ tasks:
         - --datasets
         - ${TRAIN_DATASETS}
         - --cuda_device
-        - 0,1,2,3
+        - 0
         - --serialization_dir
         - /output/models/
       env:
